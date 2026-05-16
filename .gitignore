@@ -1,7 +1,3 @@
-# Blender ideiglenes mentések
-*.blend1
-*.blend2
-
 # Operációs rendszer szemétfájlok (ha a csapatból valaki Mac-et vagy Windows-t használ)
 .DS_Store
 Thumbs.db
@@ -10,3 +6,5 @@ Thumbs.db
 log/
 build/
 install/
+#referencia képek
+references/
