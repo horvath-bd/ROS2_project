@@ -1,3 +1,7 @@
+#blender
+*.blend1
+*.blend2
+
 # Operációs rendszer szemétfájlok (ha a csapatból valaki Mac-et vagy Windows-t használ)
 .DS_Store
 Thumbs.db
