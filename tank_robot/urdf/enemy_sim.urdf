@@ -1,0 +1,177 @@
+<?xml version='1.0'?>
+
+<robot name="enemy_photo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Robot footprint -->
+  <link name="base_footprint"></link>
+  <!-- Enemy_footprint-Hull -->
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.05322" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="hull_link" />
+  </joint>
+   <!--Enemy_Hull link-->
+  <link name='hull_link'>
+    <inertial>
+      <mass value="18.699"/>
+      <origin xyz="0.013019 0.0 0.037235" rpy=" 0 0 0"/>
+      <inertia ixx="0.069455" ixy="0.0"      ixz="0.0" 
+                              iyy="0.995151" iyz="0.0" 
+                                             izz="1.033005" />
+    </inertial>
+
+    <collision name='hull'>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name='hull_link_visual'>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+       <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl" /> 
+      </geometry>
+    </visual>
+  </link>
+
+ <!-- Hull-Left track joint-->
+
+ <joint name="left_track_joint" type="fixed">
+    <origin xyz="-0.021 0.146 -0.00461" rpy="0 0 0" />
+    <parent link="hull_link"/>
+    <child link="left_track_link" />
+  </joint>
+
+   <!-- Left_track_link-->
+
+   <link name="left_track_link">
+    <inertial>
+      <mass value="15.332"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.039134" ixy="0.0" ixz="0.0" 
+                               iyy="0.853424" iyz="0.0" 
+                                              izz="0.865356" />
+    </inertial>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="left_track_visual">
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl" /> 
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Hull-Right_track_joint-->
+
+  <joint name="right_track_joint" type="fixed">
+    <origin xyz="-0.021 -0.146 -0.00461" rpy="0 0 0" />
+    <parent link="hull_link"/>
+    <child link="right_track_link" />
+  </joint>
+
+  <!-- Right track link-->
+
+  <link name="right_track_link">
+    <inertial>
+      <mass value="15.332"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.039134" ixy="0.0" ixz="0.0" 
+                               iyy="0.853424" iyz="0.0" 
+                                              izz="0.865356" />
+    </inertial>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="right_track_visual">
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl" /> 
+      </geometry>
+    </visual>
+  </link>
+
+<!-- Hull-Turret joint-->
+
+<joint name="turret_joint" type="revolute">
+    <origin xyz="-0.0144 0.0 0.08968" rpy="0 0 0" />
+    <parent link="hull_link"/>
+    <child link="turret_link" />
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100.0" velocity="2.0"/>
+  </joint>
+
+<!-- Turret link-->
+
+  <link name="turret_link">
+    <inertial>
+      <mass value="8.401"/>
+      <origin xyz="0.0 0.0 0.038969" rpy="0 0 0"/>
+      <inertia ixx="0.093347" ixy="0.0" ixz="0.0" 
+                               iyy="0.093347" iyz="0.0" 
+                                              izz="0.165367" />
+    </inertial>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="turret_visual">
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl" /> 
+      </geometry>
+    </visual>
+  </link>
+
+<!-- Turret-Gun joint-->
+
+  <joint name="gun_joint" type="revolute">
+    <origin xyz="0.1726 0.0 0.0377" rpy="0 0 0" />
+    <parent link="turret_link"/>
+    <child link="gun_link" />
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.08727" upper="0.08727" effort="50.0" velocity="1.5"/>
+  </joint>
+
+<!-- Gun link -->
+
+  <link name="gun_link">
+    <inertial>
+      <mass value="4.762"/>
+      <origin xyz="0.242735 0.0 0.0" rpy="0 0 0"/>
+      <inertia ixx="0.004618" ixy="0.0" ixz="0.0" 
+                               iyy="0.244735" iyz="0.0" 
+                                              izz="0.248264" />
+    </inertial>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="gun_visual">
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="package://tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl" /> 
+      </geometry>
+    </visual>
+  </link>
+</robot>
