@@ -11,3 +11,7 @@ Játék harckocsi szimulációja Gazebóban.
 ### 3D Modellezés és Textúrázás (Blender)
 A harckocsi modellje Blenderben készült. A Gazebo kompatibilitás érdekében a textúrák PBR (Physically Based Rendering) baking eljárással lettek kisütve 
 (Albedo, Normal, Roughness, Emissive csatornák).
+
+-Cyclone nélkül a gazebo elszáll a retekbe
+sudo apt install ros-jazzy-rmw-cyclonedds-cpp
+echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> ~/.bashrc
