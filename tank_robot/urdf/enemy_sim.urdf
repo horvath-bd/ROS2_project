@@ -1,7 +1,9 @@
 <?xml version='1.0'?>
 
-<robot name="enemy_photo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="enemy_sim" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <!-- Gazebo plugin -->
+  <xacro:include filename="$(find tank_robot)/urdf/enemy_sim.gazebo" />
   <!-- Robot footprint -->
   <link name="base_footprint"></link>
   <!-- Enemy_footprint-Hull -->
@@ -111,6 +113,7 @@
     <child link="turret_link" />
     <axis xyz="0 0 1"/>
     <limit lower="-3.14159" upper="3.14159" effort="100.0" velocity="2.0"/>
+    <dynamics damping="10.0" friction="2.0"/>
   </joint>
 
 <!-- Turret link-->
@@ -145,8 +148,9 @@
     <origin xyz="0.1726 0.0 0.0377" rpy="0 0 0" />
     <parent link="turret_link"/>
     <child link="gun_link" />
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-0.08727" upper="0.08727" effort="50.0" velocity="1.5"/>
+     <dynamics damping="10.0" friction="2.0"/>
   </joint>
 
 <!-- Gun link -->

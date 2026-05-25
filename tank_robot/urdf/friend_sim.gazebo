@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot>
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <joint_name>turret_joint</joint_name>
+      <joint_name>gun_joint</joint_name>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>turret_joint</joint_name>
+      <topic>/model/my_tank/joint/turret_joint/cmd_pos</topic>
+      <p_gain>1000.0</p_gain>
+      <i_gain>10</i_gain>
+      <d_gain>50</d_gain>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>gun_joint</joint_name>
+      <topic>/model/my_tank/joint/gun_joint/cmd_pos</topic>
+      <p_gain>1000</p_gain>
+      <i_gain>10</i_gain>
+      <d_gain>50</d_gain>
+    </plugin>
+
+    <plugin name="gz::sim::systems::TrackedVehicle" filename="gz-sim-tracked-vehicle-system">
+        <left_track><link>left_track_link</link></left_track>
+        <right_track><link>right_track_link</link></right_track>
+        <tracks_separation>0.296</tracks_separation>
+        <tracks_height>0.04861</tracks_height>
+        <steering_efficiency>0.5</steering_efficiency>
+    </plugin>
+
+    <plugin name='gz::sim::systems::TrackController' filename='gz-sim-track-controller-system'>
+        <link>left_track_link</link>
+        <min_velocity>-1.0</min_velocity>
+        <max_velocity>1.0</max_velocity>
+    </plugin>
+
+    <plugin name='gz::sim::systems::TrackController' filename='gz-sim-track-controller-system'>
+        <link>right_track_link</link>
+        <min_velocity>-1.0</min_velocity>
+        <max_velocity>1.0</max_velocity>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">87</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 1.0}, angular: {z: 0.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">88</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: -1.0}, angular: {z: 0.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">83</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 0.0}, angular: {z: 0.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">65</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 0.0}, angular: {z: 1.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">68</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 0.0}, angular: {z: -1.0}
+        </output>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="left_track_joint">
+      <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo reference="right_track_joint">
+      <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo reference="left_track_link">
+      <mu1>2.0</mu1>
+      <mu2>2.0</mu2>
+  </gazebo>
+
+  <gazebo reference="right_track_link">
+      <mu1>2.0</mu1>
+      <mu2>2.0</mu2>
+  </gazebo>
+</robot>
