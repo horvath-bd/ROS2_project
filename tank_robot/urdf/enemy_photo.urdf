@@ -1,0 +1,77 @@
+<?xml version='1.0'?>
+
+<robot name="enemy_photo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- STEP 1 - Robot footprint -->
+  <link name="base_footprint"></link>
+  <!-- STEP 2 - tank statue hull -->
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.052" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="hull_link" />
+  </joint>
+  <link name='hull_link'>
+
+    <inertial>
+      <mass value="15.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      <inertia
+          ixx="0.0625" ixy="0" ixz="0"
+          iyy="0.2125" iyz="0"
+          izz="0.25"
+      />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0.01725" rpy="0 0 0"/> 
+      <geometry>
+        <box size=".5041 .44 .1385"/>
+      </geometry>
+    </collision>
+
+    <visual name='hull_link_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+       <!-- <box size=".5041 .44 .1385"/>-->
+       <mesh filename="package://tank_robot/meshes/Photo/3D/Enemy_hull.glb"/>
+      </geometry>
+    </visual>
+  </link>
+  <!-- STEP 3 - tank statue turret -->
+  <joint type="continuous" name="turret_joint">
+    <origin xyz="-0.0144 0 0.0872" rpy="0 0 0"/>
+    <child link="turret_link"/>
+    <parent link="hull_link"/>
+    <axis xyz="0 0 1" rpy="0 0 0"/>
+    <limit effort="100" velocity="10"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <link name='turret_link'>
+
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      <inertia
+          ixx="0.01" ixy="0" ixz="0"
+          iyy="0.03393" iyz="0"
+          izz="0.03977"
+      />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0.0355" rpy=" 0 0 0"/> 
+      <geometry>
+        <box size="0.2764 0.138 0.071"/>
+      </geometry>
+    </collision>
+
+    <visual name='turret_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <!--<box size=".2764 .138 .071"/>-->
+        <mesh filename="package://tank_robot/meshes/Photo/3D/Enemy_turret.glb"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
