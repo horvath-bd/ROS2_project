@@ -6,6 +6,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
 
@@ -61,9 +62,9 @@ def generate_launch_description():
         package="ros_gz_sim",
         executable="create",
         arguments=[
-            "-name", "my_robot",
+            "-name", "my_tank",
             "-topic", "robot_description",
-            "-x", "0.0", "-y", "0.0", "-z", "0.5", "-Y", "0.0"  # Initial spawn position
+            "-x", "0.0", "-y", "0.0", "-z", "0.5", "-Y", "1.07"  # Initial spawn position
         ],
         output="screen",
         parameters=[
@@ -77,7 +78,8 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='screen',
         parameters=[
-            {'robot_description': Command(['xacro', ' ', urdf_file_path]),
+            # Ezt a sort módosítottuk!
+            {'robot_description': ParameterValue(Command(['xacro', ' ', urdf_file_path]), value_type=str),
              'use_sim_time': True},
         ],
         remappings=[
@@ -86,9 +88,32 @@ def generate_launch_description():
         ]
     )
 
-    joint_state_publisher_gui_node = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
+    #joint_state_publisher_gui_node = Node(
+    #    package='joint_state_publisher_gui',
+    #    executable='joint_state_publisher_gui',
+    #)
+
+    # Híd a Gazebo sim time és a ROS 2 óra között
+    clock_bridge_node = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            # Óra szinkronizáció
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            # Joint állapotok (Gazebo -> ROS)
+            '/world/empty/model/my_tank/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
+            # Torony vezérlés (ROS -> Gazebo)
+            '/model/my_tank/joint/turret_joint/cmd_pos@std_msgs/msg/Float64]gz.msgs.Double',
+            # Ágyú vezérlés (ROS -> Gazebo)
+            '/model/my_tank/joint/gun_joint/cmd_pos@std_msgs/msg/Float64]gz.msgs.Double',
+            #lánctalp vezérlés
+            '/model/my_tank/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
+        ],
+        # Mivel a joint_state topic neve Gazebóban specifikus, áttérképezzük a standard ROS névre:
+        remappings=[
+            ('/world/empty/model/my_tank/joint_state', '/joint_states'),
+        ],
+        output='screen'
     )
 
     launchDescriptionObject = LaunchDescription()
@@ -100,6 +125,8 @@ def generate_launch_description():
     launchDescriptionObject.add_action(rviz_node)
     launchDescriptionObject.add_action(spawn_urdf_node)
     launchDescriptionObject.add_action(robot_state_publisher_node)
-    launchDescriptionObject.add_action(joint_state_publisher_gui_node)
+    #launchDescriptionObject.add_action(joint_state_publisher_gui_node)
+
+    launchDescriptionObject.add_action(clock_bridge_node)
 
     return launchDescriptionObject
