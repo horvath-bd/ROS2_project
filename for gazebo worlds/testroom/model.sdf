@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <model name="testroom">
+    <static>true</static> <link name="room_link">
+      
+      <collision name="house_collision">
+        <geometry>
+          <mesh>
+            <uri>model://testroom/meshes/visual_model.glb</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="room_visual">
+        <geometry>
+          <mesh>
+            <uri>model://testroom/meshes/visual_model.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+
+    </link>
+  </model>
+</sdf>
