@@ -1,0 +1,173 @@
+<?xml version='1.0'?>
+
+<robot name="enemy_sim" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find tank_robot)/urdf/enemy_sim.gazebo" />
+  <link name="base_footprint">
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" 
+               iyy="0.0001" iyz="0.0" 
+               izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.05322" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="hull_link" />
+  </joint>
+   <link name='hull_link'>
+    <inertial>
+      <mass value="18.699"/>
+      <origin xyz="0.013019 0.0 0.037235" rpy=" 0 0 0"/>
+      <inertia ixx="0.069455" ixy="0.0"      ixz="0.0" 
+                              iyy="0.995151" iyz="0.0" 
+                                             izz="1.033005" />
+    </inertial>
+    <collision name='hull_link_collision'>
+      <origin xyz="0 0 0" rpy="1.57079 0 -1.57079"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl" />
+      </geometry>
+      <surface>
+        <contact>
+          <collide_bitmask>255</collide_bitmask>
+        </contact>
+      </surface>
+    </collision>
+
+    <visual name='hull_link_visual'>
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
+      <geometry>
+       <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Hull.glb" /> 
+      </geometry>
+    </visual>
+  </link>
+
+ <joint name="left_track_joint" type="fixed">
+    <origin xyz="-0.021 0.146 -0.00461" rpy="0 0 0" />
+    <parent link="hull_link"/>
+    <child link="left_track_link" />
+  </joint>
+
+   <link name="left_track_link">
+    <inertial>
+      <mass value="15.332"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.039134" ixy="0.0" ixz="0.0" 
+                               iyy="0.853424" iyz="0.0" 
+                                              izz="0.865356" />
+    </inertial>
+
+    <collision name='left_track_collision'>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="left_track_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="right_track_joint" type="fixed">
+    <origin xyz="-0.021 -0.146 -0.00461" rpy="0 0 0" />
+    <parent link="hull_link"/>
+    <child link="right_track_link" />
+  </joint>
+
+  <link name="right_track_link">
+    <inertial>
+      <mass value="15.332"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.039134" ixy="0.0" ixz="0.0" 
+                               iyy="0.853424" iyz="0.0" 
+                                              izz="0.865356" />
+    </inertial>
+
+    <collision name='right_track_collision'>
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="right_track_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb" /> 
+      </geometry>
+    </visual>
+  </link>
+
+<joint name="turret_joint" type="revolute">
+    <origin xyz="-0.0144 0.0 0.08968" rpy="0 0 0" />
+    <parent link="hull_link"/>
+    <child link="turret_link" />
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100.0" velocity="2.0"/>
+    <dynamics damping="10.0" friction="2.0"/>
+  </joint>
+
+<link name="turret_link">
+    <inertial>
+      <mass value="8.401"/>
+      <origin xyz="0.0 0.0 0.038969" rpy="0 0 0"/>
+      <inertia ixx="0.093347" ixy="0.0" ixz="0.0" 
+                               iyy="0.093347" iyz="0.0" 
+                                              izz="0.165367" />
+    </inertial>
+
+    <collision name="turret_link_collision">
+      <origin xyz="0 0 0" rpy="1.57079 0 1.57079"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="turret_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Turret.glb" /> 
+      </geometry>
+    </visual>
+  </link>
+
+<joint name="gun_joint" type="revolute">
+    <origin xyz="-0.1726 0.0 0.0401" rpy="0 0 0" />
+    <parent link="turret_link"/>
+    <child link="gun_link" />
+    <axis xyz="0 -1 0"/>
+    <limit lower="-0.002" upper="0.002" effort="50.0" velocity="1.5"/>
+     <dynamics damping="10.0" friction="2.0"/>
+  </joint>
+
+<link name="gun_link">
+    <inertial>
+      <mass value="4.762"/>
+      <origin xyz="0.242735 0.0 0.0" rpy="0 0 0"/>
+      <inertia ixx="0.004618" ixy="0.0" ixz="0.0" 
+                               iyy="0.244735" iyz="0.0" 
+                                              izz="0.248264" />
+    </inertial>
+
+    <collision name="gun_link_collision">
+      <origin xyz="0 0 0" rpy="1.57079 0 -1.57079"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl" />
+      </geometry>
+    </collision>
+
+    <visual name="gun_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/> 
+      <geometry>
+        <mesh filename="file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Gun.glb" /> 
+      </geometry>
+    </visual>
+  </link>
+</robot>

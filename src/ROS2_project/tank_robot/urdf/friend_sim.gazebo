@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<robot>
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <joint_name>turret_joint</joint_name>
+      <joint_name>gun_joint</joint_name>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>turret_joint</joint_name>
+      <topic>/model/my_tank/joint/turret_joint/cmd_pos</topic>
+      <p_gain>1000.0</p_gain>
+      <i_gain>10</i_gain>
+      <d_gain>50</d_gain>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>gun_joint</joint_name>
+      <topic>/model/my_tank/joint/gun_joint/cmd_pos</topic>
+      <p_gain>1000</p_gain>
+      <i_gain>10</i_gain>
+      <d_gain>50</d_gain>
+    </plugin>
+
+   <plugin name="gz::sim::systems::TrackedVehicle" filename="gz-sim-tracked-vehicle-system">
+        <left_track><link>left_track_link</link></left_track>
+        <right_track><link>right_track_link</link></right_track>
+        <tracks_separation>0.295542</tracks_separation>
+        <tracks_height>0.118371</tracks_height>
+        <steering_efficiency>0.75</steering_efficiency>
+
+        <odom_topic>odom</odom_topic>
+        <tf_topic>tf</tf_topic>
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_footprint</child_frame_id>
+        <odom_publish_frequency>30</odom_publish_frequency>
+        
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+    </plugin>
+
+    <plugin name='gz::sim::systems::TrackController' filename='gz-sim-track-controller-system'>
+        <link>left_track_link</link>
+        <min_velocity>-1.0</min_velocity>
+        <max_velocity>1.0</max_velocity>
+    </plugin>
+
+    <plugin name='gz::sim::systems::TrackController' filename='gz-sim-track-controller-system'>
+        <link>right_track_link</link>
+        <min_velocity>-1.0</min_velocity>
+        <max_velocity>1.0</max_velocity>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">87</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 1.0}, angular: {z: 0.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">88</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: -1.0}, angular: {z: 0.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">83</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 0.0}, angular: {z: 0.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">65</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 0.0}, angular: {z: 1.0}
+        </output>
+    </plugin>
+
+    <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+            <match field="data">68</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/model/my_tank/cmd_vel">
+            linear: {x: 0.0}, angular: {z: -1.0}
+        </output>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="left_track_joint">
+      <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo reference="right_track_joint">
+      <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo reference="left_track_link">
+      <mu1>2.0</mu1>
+      <mu2>2.0</mu2>
+  </gazebo>
+
+  <gazebo reference="right_track_link">
+      <mu1>2.0</mu1>
+      <mu2>2.0</mu2>
+  </gazebo>
+
+  <gazebo reference="lidar_link">
+    <sensor name="gpu_lidar" type="gpu_lidar">
+      <update_rate>10</update_rate>
+      <topic>scan</topic>
+      <gz_frame_id>lidar_link</gz_frame_id>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>340</samples>
+            <!--(max_angle-min_angle)/samples * resolution -->
+            <resolution>1</resolution>
+            <min_angle>-1.48353</min_angle>
+            <max_angle>1.48353</max_angle>
+          </horizontal>
+          <vertical>
+              <samples>32</samples>
+              <min_angle>-0.2094395</min_angle>
+              <max_angle>0.3490</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.65</min>
+          <max>25.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+        </noise>
+        <frame_id>lidar_link</frame_id>
+      </lidar>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
+
+
+  <gazebo reference="camera_link">
+    <sensor name="rgbd_camera" type="rgbd_camera">
+      <camera>
+        <horizontal_fov>1.25</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+        </image>
+        <clip>
+          <near>0.3</near>
+          <far>15</far>
+        </clip>
+        <optical_frame_id>camera_link_optical</optical_frame_id>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>20</update_rate>
+      <visualize>true</visualize>
+      <topic>camera</topic>
+      <gz_frame_id>camera_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+
+
+    <gazebo reference="hull_link">
+    <sensor name="imu" type="imu">
+      <always_on>1</always_on>
+      <update_rate>50</update_rate>
+      <visualize>true</visualize>
+      <topic>imu</topic>
+      <enable_metrics>true</enable_metrics>
+      <gz_frame_id>hull_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+</robot>

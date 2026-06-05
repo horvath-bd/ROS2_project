@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="projectile">
+    <link name="link">
+      <inertial>
+        <mass>0.05</mass> 
+        <inertia>
+          <ixx>0.000022</ixx> <ixy>0</ixy> <ixz>0</ixz>
+          <iyy>0.000022</iyy> <iyz>0</iyz>
+          <izz>0.000001</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <pose>0 0 0 0 1.5707 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.006</radius>
+            <length>0.072</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>255</collide_bitmask>
+            <ode>
+              <soft_cfm>0.0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>100000.0</kp>
+              <kd>1.0</kd>
+              <max_vel>100.0</max_vel>
+              <min_depth>0.001</min_depth> 
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.1</mu>
+              <mu2>0.1</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+
+      <sensor name="dart_contact_sensor" type="contact">
+        <contact>
+          <collision>collision</collision>
+        </contact>
+        <topic>/hit_contact</topic>
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+      </sensor>
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>package://tank_robot/meshes/Sim/dart/dart.glb</uri>
+            <scale>1 1 1</scale> 
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

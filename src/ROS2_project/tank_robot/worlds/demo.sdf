@@ -1,0 +1,1666 @@
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/>
+    <plugin name='gz::sim::systems::ApplyLinkWrench' filename='gz-sim-apply-link-wrench-system'/>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5600000000000001e-06 2.2799999999999999e-05 -4.2299999999999998e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.100000001 0.100000001 0.100000001 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='demo_room'>
+      <static>true</static>
+      <pose>0.080000000000000002 -0.16900000000000001 0 0 0 0</pose>
+      <link name='room_link'>
+        <collision name='demo_room_collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/Demo_room/meshes/demo_room.glb</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='demo_room_visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/Demo_room/meshes/demo_room.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='aws_clutter_01'>
+      <static>true</static>
+      <pose>7.0454400000000001 13.7189 -0.028433400000000001 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_collision.DAE</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='aws_clutter_02'>
+      <static>true</static>
+      <pose>9.3100000000000005 13.17 -0.00017289399999999999 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_collision.DAE</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='cardboard_box'>
+      <pose>12.220000267028809 7.8793983459472656 0.15000000596046448 -4.2827200119610609e-10 1.3343599836179728e-10 3.4897300890784548e-16</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 0.40000000000000002 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/cardboard_box/meshes/cardboard_box.dae</uri>
+              <scale>1.25 1 0.75</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='minecart'>
+      <pose>20.780000000000001 3.3399999999999999 0.0205714 3.5157600000000001e-10 -6.2480100000000006e-11 4.9899700000000001e-10</pose>
+      <link name='chassis'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/Mine Cart/meshes/minecart.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/Mine Cart/meshes/minecart.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='enemy_tank_1'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>-0.0081133826481724191 0 0.064461005994356099 0 0 0</pose>
+          <mass>49.36310000000001</mass>
+          <inertia>
+            <ixx>0.82179638892667839</ixx>
+            <ixy>0</ixy>
+            <ixz>-0.016535197397063921</ixz>
+            <iyy>2.7358813402855202</iyy>
+            <iyz>0</iyz>
+            <izz>3.4308935993588419</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_fixed_joint_lump__hull_link_collision_collision'>
+          <pose>0 0 0.053220000000000003 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__left_track_collision_collision_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__right_track_collision_collision_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='base_footprint_fixed_joint_lump__hull_link_visual_visual'>
+          <pose>0 0 0.053220000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Hull.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__left_track_visual_visual_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__right_track_visual_visual_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='turret_joint' type='revolute'>
+        <pose>0 0 0 0 2.8645102181750287e-92 0</pose>
+        <parent>base_footprint</parent>
+        <child>turret_link</child>
+        <axis>
+          <xyz>-7.1659404266814898e-46 0 1</xyz>
+          <limit>
+            <lower>-3.1415899999999999</lower>
+            <upper>3.1415899999999999</upper>
+            <effort>100</effort>
+            <velocity>2</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='turret_link'>
+        <pose>-0.014399999999994861 -8.8817841970012523e-16 0.14290000000000008 1.2705494208814503e-21 8.4703294725430053e-22 -3.3306690738754696e-16</pose>
+        <inertial>
+          <pose>0 0 0.038968999999999997 0 0 0</pose>
+          <mass>8.4009999999999998</mass>
+          <inertia>
+            <ixx>0.093346999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.093346999999999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.16536699999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='turret_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='turret_link_fixed_joint_lump__turret_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Turret.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='gun_joint' type='revolute'>
+        <pose>-2.7755575615628914e-17 3.1160005756229966e-29 0 4.8148248609680907e-35 -1.9334497980404085e-29 -2.4651903288156624e-32</pose>
+        <parent>turret_link</parent>
+        <child>gun_link</child>
+        <axis>
+          <xyz>-2.4651903288156616e-32 -1 -4.9282135596532325e-61</xyz>
+          <limit>
+            <lower>-0.002</lower>
+            <upper>0.002</upper>
+            <effort>50</effort>
+            <velocity>1.5</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='gun_link'>
+        <pose>-0.18699999999999939 -4.2632564145606011e-14 0.183 2.3220064090387031e-13 0.0040000299999999643 5.7542790854480342e-16</pose>
+        <inertial>
+          <pose>0.24273500000000001 0 0 0 0 0</pose>
+          <mass>4.7619999999999996</mass>
+          <inertia>
+            <ixx>0.0046179999999999997</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.24473500000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.24826400000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name='gun_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='gun_link_fixed_joint_lump__gun_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Gun.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='left_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='left_track_link' attached_to='left_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='right_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 -0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='right_track_link' attached_to='right_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_footprint_joint' attached_to='base_footprint'>
+        <pose>0 0 0.053220000000000003 0 0 0</pose>
+      </frame>
+      <frame name='hull_link' attached_to='base_footprint_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>13.257525444030763 5.1433258056640607 -0.0021147872321307655 4.6328500597151621e-06 3.9862497882456301e-06 0.86027503631119107</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='enemy_tank_2'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>-0.0081133826481724191 0 0.064461005994356099 0 0 0</pose>
+          <mass>49.36310000000001</mass>
+          <inertia>
+            <ixx>0.82179638892667839</ixx>
+            <ixy>0</ixy>
+            <ixz>-0.016535197397063921</ixz>
+            <iyy>2.7358813402855202</iyy>
+            <iyz>0</iyz>
+            <izz>3.4308935993588419</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_fixed_joint_lump__hull_link_collision_collision'>
+          <pose>0 0 0.053220000000000003 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__left_track_collision_collision_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__right_track_collision_collision_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='base_footprint_fixed_joint_lump__hull_link_visual_visual'>
+          <pose>0 0 0.053220000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Hull.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__left_track_visual_visual_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__right_track_visual_visual_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='turret_joint' type='revolute'>
+        <pose>0 1.9721522630525295e-31 0 0 1.4371010580645022e-42 0</pose>
+        <parent>base_footprint</parent>
+        <child>turret_link</child>
+        <axis>
+          <xyz>2.5327354429323704e-42 0 1</xyz>
+          <limit>
+            <lower>-3.1415899999999999</lower>
+            <upper>3.1415899999999999</upper>
+            <effort>100</effort>
+            <velocity>2</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='turret_link'>
+        <pose>-0.014400000000005519 3.5527136788005009e-15 0.14290000000000011 7.5525543066331834e-27 -2.0811692103723918e-22 -4.5373400427071362e-16</pose>
+        <inertial>
+          <pose>0 0 0.038968999999999997 0 0 0</pose>
+          <mass>8.4009999999999998</mass>
+          <inertia>
+            <ixx>0.093346999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.093346999999999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.16536699999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='turret_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='turret_link_fixed_joint_lump__turret_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Turret.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='gun_joint' type='revolute'>
+        <pose>0 3.3321484636535539e-27 2.7755575615628914e-17 0 -3.3780032530869433e-24 0</pose>
+        <parent>turret_link</parent>
+        <child>gun_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-0.002</lower>
+            <upper>0.002</upper>
+            <effort>50</effort>
+            <velocity>1.5</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='gun_link'>
+        <pose>-0.18700000000000117 -1.0734524380495714e-11 0.183 5.9364699999955825e-11 0.0039999999999999142 2.3253604006886752e-13</pose>
+        <inertial>
+          <pose>0.24273500000000001 0 0 0 0 0</pose>
+          <mass>4.7619999999999996</mass>
+          <inertia>
+            <ixx>0.0046179999999999997</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.24473500000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.24826400000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name='gun_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='gun_link_fixed_joint_lump__gun_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Gun.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='left_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='left_track_link' attached_to='left_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='right_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 -0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='right_track_link' attached_to='right_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_footprint_joint' attached_to='base_footprint'>
+        <pose>0 0 0.053220000000000003 0 0 0</pose>
+      </frame>
+      <frame name='hull_link' attached_to='base_footprint_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>13 13 -0.0021130599999999999 3.5411100000439097e-12 6.1076700000759462e-06 -3.2223000000400702e-09</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='enemy_tank_3'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>-0.0081133826481724191 0 0.064461005994356099 0 0 0</pose>
+          <mass>49.36310000000001</mass>
+          <inertia>
+            <ixx>0.82179638892667839</ixx>
+            <ixy>0</ixy>
+            <ixz>-0.016535197397063921</ixz>
+            <iyy>2.7358813402855202</iyy>
+            <iyz>0</iyz>
+            <izz>3.4308935993588419</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_fixed_joint_lump__hull_link_collision_collision'>
+          <pose>0 0 0.053220000000000003 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__left_track_collision_collision_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__right_track_collision_collision_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='base_footprint_fixed_joint_lump__hull_link_visual_visual'>
+          <pose>0 0 0.053220000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Hull.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__left_track_visual_visual_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__right_track_visual_visual_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='turret_joint' type='revolute'>
+        <pose>0 1.1832913578315177e-30 0 5.9617868505569558e-62 -3.5799335226125196e-46 -1.0671400300489681e-107</pose>
+        <parent>base_footprint</parent>
+        <child>turret_link</child>
+        <axis>
+          <xyz>-1.0739807016245707e-45 0 1</xyz>
+          <limit>
+            <lower>-3.1415899999999999</lower>
+            <upper>3.1415899999999999</upper>
+            <effort>100</effort>
+            <velocity>2</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='turret_link'>
+        <pose>-0.014400000000001967 -1.7763568394002505e-15 0.14290000000000008 -2.5410988417629006e-21 -2.7528570785764753e-21 1.1102230246251563e-16</pose>
+        <inertial>
+          <pose>0 0 0.038968999999999997 0 0 0</pose>
+          <mass>8.4009999999999998</mass>
+          <inertia>
+            <ixx>0.093346999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.093346999999999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.16536699999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='turret_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='turret_link_fixed_joint_lump__turret_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Turret.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='gun_joint' type='revolute'>
+        <pose>-2.7755575615628914e-17 1.6218980211344003e-27 0 3.2311742677852651e-27 -4.7843631422799535e-25 6.3108872417680958e-30</pose>
+        <parent>turret_link</parent>
+        <child>gun_link</child>
+        <axis>
+          <xyz>2.3183095670831187e-51 -1 -3.2311619418336199e-27</xyz>
+          <limit>
+            <lower>-0.002</lower>
+            <upper>0.002</upper>
+            <effort>50</effort>
+            <velocity>1.5</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='gun_link'>
+        <pose>-0.18700000000000827 -3.9523939676655573e-12 0.18300000000000008 2.1875199965282174e-11 0.0040000299999999626 8.7826728624631928e-14</pose>
+        <inertial>
+          <pose>0.24273500000000001 0 0 0 0 0</pose>
+          <mass>4.7619999999999996</mass>
+          <inertia>
+            <ixx>0.0046179999999999997</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.24473500000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.24826400000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name='gun_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='gun_link_fixed_joint_lump__gun_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Gun.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='left_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='left_track_link' attached_to='left_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='right_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 -0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='right_track_link' attached_to='right_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_footprint_joint' attached_to='base_footprint'>
+        <pose>0 0 0.053220000000000003 0 0 0</pose>
+      </frame>
+      <frame name='hull_link' attached_to='base_footprint_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>4.0602397918701163 18.964700698852546 -0.0021319100633263584 4.6979215100608685e-06 3.9093548785490656e-06 0.87676385182051231</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='enemy_tank_4'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>-0.0081133826481724191 0 0.064461005994356099 0 0 0</pose>
+          <mass>49.36310000000001</mass>
+          <inertia>
+            <ixx>0.82179638892667839</ixx>
+            <ixy>0</ixy>
+            <ixz>-0.016535197397063921</ixz>
+            <iyy>2.7358813402855202</iyy>
+            <iyz>0</iyz>
+            <izz>3.4308935993588419</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_fixed_joint_lump__hull_link_collision_collision'>
+          <pose>0 0 0.053220000000000003 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__left_track_collision_collision_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__right_track_collision_collision_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='base_footprint_fixed_joint_lump__hull_link_visual_visual'>
+          <pose>0 0 0.053220000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Hull.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__left_track_visual_visual_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__right_track_visual_visual_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='turret_joint' type='revolute'>
+        <pose>0 -7.8886090522101181e-31 0 0 1.0551048899212934e-72 0</pose>
+        <parent>base_footprint</parent>
+        <child>turret_link</child>
+        <axis>
+          <xyz>1.1860144884361544e-41 0 1</xyz>
+          <limit>
+            <lower>-3.1415899999999999</lower>
+            <upper>3.1415899999999999</upper>
+            <effort>100</effort>
+            <velocity>2</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='turret_link'>
+        <pose>-0.014400000000012625 -8.8817841970012523e-15 0.1429 4.2351647362715139e-22 -3.9175273810511398e-21 -5.5511151231257837e-16</pose>
+        <inertial>
+          <pose>0 0 0.038968999999999997 0 0 0</pose>
+          <mass>8.4009999999999998</mass>
+          <inertia>
+            <ixx>0.093346999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.093346999999999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.16536699999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='turret_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='turret_link_fixed_joint_lump__turret_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Turret.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='gun_joint' type='revolute'>
+        <pose>0 1.2621774483536189e-27 2.7755575615628914e-17 0 -3.4015485964690867e-23 0</pose>
+        <parent>turret_link</parent>
+        <child>gun_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-0.002</lower>
+            <upper>0.002</upper>
+            <effort>50</effort>
+            <velocity>1.5</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='gun_link'>
+        <pose>-0.18699999999999761 -3.3324454307148699e-11 0.18300000000000008 1.8412700047764445e-10 0.0039999999999999602 7.3784847604684206e-13</pose>
+        <inertial>
+          <pose>0.24273500000000001 0 0 0 0 0</pose>
+          <mass>4.7619999999999996</mass>
+          <inertia>
+            <ixx>0.0046179999999999997</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.24473500000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.24826400000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name='gun_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='gun_link_fixed_joint_lump__gun_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Gun.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='left_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='left_track_link' attached_to='left_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='right_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 -0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='right_track_link' attached_to='right_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_footprint_joint' attached_to='base_footprint'>
+        <pose>0 0 0.053220000000000003 0 0 0</pose>
+      </frame>
+      <frame name='hull_link' attached_to='base_footprint_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>12.327099800109863 18.809299468994137 -0.0020784300286322836 4.0106688307432022e-06 4.6062698742558802e-06 0.71650778708399099</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='enemy_tank_5'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>-0.0081133826481724191 0 0.064461005994356099 0 0 0</pose>
+          <mass>49.36310000000001</mass>
+          <inertia>
+            <ixx>0.82179638892667839</ixx>
+            <ixy>0</ixy>
+            <ixz>-0.016535197397063921</ixz>
+            <iyy>2.7358813402855202</iyy>
+            <iyz>0</iyz>
+            <izz>3.4308935993588419</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_fixed_joint_lump__hull_link_collision_collision'>
+          <pose>0 0 0.053220000000000003 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_hull_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__left_track_collision_collision_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__right_track_collision_collision_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_Track_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='base_footprint_fixed_joint_lump__hull_link_visual_visual'>
+          <pose>0 0 0.053220000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Hull.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__left_track_visual_visual_1'>
+          <pose>-0.021000000000000001 0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__right_track_visual_visual_2'>
+          <pose>-0.021000000000000001 -0.14599999999999999 0.04861 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Track.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='turret_joint' type='revolute'>
+        <pose>0 7.8886090522101181e-31 0 -5.9600920998659349e-62 3.5789157839252548e-46 -1.0665333844929206e-107</pose>
+        <parent>base_footprint</parent>
+        <child>turret_link</child>
+        <axis>
+          <xyz>7.1578254026806418e-46 0 1</xyz>
+          <limit>
+            <lower>-3.1415899999999999</lower>
+            <upper>3.1415899999999999</upper>
+            <effort>100</effort>
+            <velocity>2</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='turret_link'>
+        <pose>-0.014399999999994861 -4.4408920985006262e-15 0.14290000000000011 2.1175823681357485e-22 2.1705219273391446e-21 -2.2204460492503131e-16</pose>
+        <inertial>
+          <pose>0 0 0.038968999999999997 0 0 0</pose>
+          <mass>8.4009999999999998</mass>
+          <inertia>
+            <ixx>0.093346999999999999</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.093346999999999999</iyy>
+            <iyz>0</iyz>
+            <izz>0.16536699999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='turret_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 -5.5511151231257827e-17 1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_turret_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='turret_link_fixed_joint_lump__turret_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Turret.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='gun_joint' type='revolute'>
+        <pose>-2.7755575615628914e-17 3.2540512340366737e-29 2.7755575615628914e-17 9.2445084141288888e-35 0 0</pose>
+        <parent>turret_link</parent>
+        <child>gun_link</child>
+        <axis>
+          <xyz>-1.8489164907778944e-37 -1 -3.0370945824918386e-62</xyz>
+          <limit>
+            <lower>-0.002</lower>
+            <upper>0.002</upper>
+            <effort>50</effort>
+            <velocity>1.5</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>10</damping>
+            <friction>2</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='gun_link'>
+        <pose>-0.18700000000001538 -4.2632564145606011e-14 0.18300000000000002 2.319564693003769e-13 0.0040000299999999652 4.0840577425787026e-16</pose>
+        <inertial>
+          <pose>0.24273500000000001 0 0 0 0 0</pose>
+          <mass>4.7619999999999996</mass>
+          <inertia>
+            <ixx>0.0046179999999999997</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.24473500000000001</iyy>
+            <iyz>0</iyz>
+            <izz>0.24826400000000001</izz>
+          </inertia>
+        </inertial>
+        <collision name='gun_link_collision_collision'>
+          <pose>0 0 0 1.5707899999999997 5.5511151231257827e-17 -1.5707899999999997</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Collision/Enemy_gun_collision.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='gun_link_fixed_joint_lump__gun_visual_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:///home/horvathbd/ros_project_ws/src/ROS2_project/tank_robot/meshes/Sim/Enemy/Visual/Gun.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='left_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='left_track_link' attached_to='left_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='right_track_joint' attached_to='hull_link'>
+        <pose>-0.021000000000000001 -0.14599999999999999 -0.0046100000000000004 0 0 0</pose>
+      </frame>
+      <frame name='right_track_link' attached_to='right_track_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_footprint_joint' attached_to='base_footprint'>
+        <pose>0 0 0.053220000000000003 0 0 0</pose>
+      </frame>
+      <frame name='hull_link' attached_to='base_footprint_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>28.224899291992191 8.440779685974114 -0.0021756999194622044 2.6568421980901066e-06 5.50406540402526e-06 0.44971678736071735</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='aws_robomaker_warehouse_ClutteringC_01'>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_collision.DAE</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.59999999999999998</mu>
+                <mu2>0.59999999999999998</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <pose>6.3076699999999999 19.168299999999999 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='aws_robomaker_warehouse_ClutteringC_01_0'>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_collision.DAE</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.59999999999999998</mu>
+                <mu2>0.59999999999999998</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <pose>8.2447400000000002 18.072299999999998 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='aws_robomaker_warehouse_ClutteringC_01_1'>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_collision.DAE</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.59999999999999998</mu>
+                <mu2>0.59999999999999998</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <pose>20.359200000000001 12.6861 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='aws_robomaker_warehouse_ClutteringC_01_2'>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_collision.DAE</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.59999999999999998</mu>
+                <mu2>0.59999999999999998</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+              <torsional>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
+              </torsional>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/aws_robomaker_warehouse_ClutteringC_01/meshes/aws_robomaker_warehouse_ClutteringC_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <pose>21.7288 10.574400000000001 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='cardboard_box_0'>
+      <pose>27.413599999999999 6.7655399999999997 0.14999999999999999 1.62291e-10 7.1630200000000001e-10 1.6791499999999999e-15</pose>
+      <link name='link'>
+        <inertial>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.041666666999999998</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.056666666999999997</iyy>
+            <iyz>0</iyz>
+            <izz>0.068333332999999996</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 0.40000000000000002 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+                <max_vel>0.10000000000000001</max_vel>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.14999999999999999 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/cardboard_box/meshes/cardboard_box.dae</uri>
+              <scale>1.2593189600000001 1.0074551679999999 0.75559137600000004</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='cardboard_box_1'>
+      <pose>24.9331 11.851699999999999 0.14999999999999999 -5.4879100000000003e-09 -5.2602900000000002e-09 1.5656400000000001e-14</pose>
+      <link name='link'>
+        <inertial>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.041666666999999998</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.056666666999999997</iyy>
+            <iyz>0</iyz>
+            <izz>0.068333332999999996</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 0.40000000000000002 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+                <max_vel>0.10000000000000001</max_vel>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.14999999999999999 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/cardboard_box/meshes/cardboard_box.dae</uri>
+              <scale>1.2593189600000001 1.0074551679999999 0.75559137600000004</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='cardboard_box_2'>
+      <pose>27.816800000000001 12.2049 0.14999999999999999 2.1917999999999998e-09 2.5323200000000002e-09 7.0595300000000005e-15</pose>
+      <link name='link'>
+        <inertial>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.041666666999999998</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.056666666999999997</iyy>
+            <iyz>0</iyz>
+            <izz>0.068333332999999996</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 0.40000000000000002 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+                <max_vel>0.10000000000000001</max_vel>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.14999999999999999 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>file:///home/horvathbd/gazebo_models/cardboard_box/meshes/cardboard_box.dae</uri>
+              <scale>1.2593189600000001 1.0074551679999999 0.75559137600000004</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <light name='key_light' type='directional'>
+      <pose>0 0 0 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.5 -1</direction>
+      <diffuse>0.899999976 0.899999976 0.899999976 1</diffuse>
+      <specular>0.800000012 0.800000012 0.800000012 1</specular>
+      <attenuation>
+        <range>10</range>
+        <linear>1</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <light name='fill_light' type='directional'>
+      <pose>0 0 0 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0.5 -0.5 -0.5</direction>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>10</range>
+        <linear>1</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>
