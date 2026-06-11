@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Empty, Bool
-from nav_msgs.msg import Odometry
+from geometry_msgs.msg import PoseWithCovarianceStamped
 import os
 import time
 import math
@@ -12,7 +12,8 @@ class ShootControllerNode(Node):
         
         self.sub_shoot = self.create_subscription(Empty, '/shoot', self.shoot_callback, 10)
         # Feliratkozunk az odometriára, hogy tudjuk, hol vagyunk
-        self.sub_odom = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
+        # Az elcsúszó odometria helyett az AMCL abszolút, térkép-szintű pozícióját figyeljük!
+        self.sub_pose = self.create_subscription(PoseWithCovarianceStamped, '/amcl_pose', self.pose_callback, 10)
         
         self.pub_combat_status = self.create_publisher(Bool, '/combat_status', 10)
         
@@ -23,34 +24,35 @@ class ShootControllerNode(Node):
         
         # Az 5 ellenséges tank kezdő koordinátái az SDF alapján
         self.enemies = {
-            1: (13.0, 0.0),
-            2: (13.0, 13.0),
-            3: (1.0, 15.0),
-            4: (18.0, 18.0),
-            5: (18.0, 0.0)
+            1: (13.2575, 5.1433),
+            2: (6.06511, 8.89161),
+            3: (4.060240, 18.964700),
+            4: (12.3271, 18.8093),
+            5: (28.2249, 8.440780)
         }
 
         self.get_logger().info("💥 OKOS KILÖVŐ RENDSZER ONLINE! (Távolság alapú célpont választás)")
 
-    def odom_callback(self, msg):
-        # Folyamatosan frissítjük a saját pozíciónkat
+    def pose_callback(self, msg):
+        # Folyamatosan frissítjük a pontos térkép-koordinátánkat
         self.robot_x = msg.pose.pose.position.x
         self.robot_y = msg.pose.pose.position.y
 
     def shoot_callback(self, msg):
         current_time = time.time()
-        # Ha még töltünk, ignoráljuk a lövést
+        
+        # Ha még töltünk, jelezzük a logban, és visszaengedjük a rendszert, hogy újra próbálkozhasson
         if current_time - self.last_shot_time < self.reload_time:
-            return 
+            remaining = self.reload_time - (current_time - self.last_shot_time)
+            self.get_logger().warn( f"⏳ FEGYVER ÚJRATÖLTÉS ALATT! Még {remaining:.2f}s van hátra...")
             
-        self.last_shot_time = current_time
-
-        if not self.enemies:
-            self.get_logger().info("🏆 Minden ellenség megsemmisítve!")
+            # Nem ragasztjuk be a státuszt, engedjük újraindulni a ciklust
             status_msg = Bool()
             status_msg.data = False
             self.pub_combat_status.publish(status_msg)
-            return
+            return 
+            
+        self.last_shot_time = current_time
 
         self.get_logger().error("🎯 TŰZPARANCS ÉSZLELVE -> Legközelebbi ellenség elpárologtatása!")
         

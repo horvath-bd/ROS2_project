@@ -51,7 +51,7 @@
    <link name="left_track_link">
    <inertial>
       <mass value="11.716"/>
-      <origin xyz="-0.0552 0.148 -0.01753" rpy="0 0 0"/>
+       <origin xyz="-0.025332 0.0 0.014885" rpy="0 0 0"/>
       <inertia ixx="0.026340" ixy="0.0"      ixz="0.016409" 
                               iyy="0.780893" iyz="0.0" 
                                              izz="0.759834" />

@@ -2,7 +2,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import CompressedImage, JointState
 from std_msgs.msg import Float64, Bool
-from geometry_msgs.msg import Point, PoseStamped
+from geometry_msgs.msg import Point, PoseStamped, PoseWithCovarianceStamped
 from action_msgs.srv import CancelGoal
 from cv_bridge import CvBridge
 import cv2
@@ -63,6 +63,14 @@ class TurretControllerNode(Node):
         # Távolságellenőrzés a térképen
         self.location_timer = self.create_timer(0.1, self.check_distance_on_map)
 
+        # Figyeljük, hol vagyunk éppen (ezt fogjuk lementeni)
+        self.sub_amcl = self.create_subscription(PoseWithCovarianceStamped, '/amcl_pose', self.amcl_callback, 10)
+
+        # Ezen fogjuk visszanyomni a Nav2-nek a helyes pozíciót
+        self.pub_initial_pose = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
+        
+        self.saved_pose = None
+
     def load_waypoints(self):
         try:
             with open(self.yaml_path, 'r') as f:
@@ -114,12 +122,25 @@ class TurretControllerNode(Node):
         except Exception:
             pass
 
+    def amcl_callback(self, msg):
+        # Csak akkor frissítjük a mentett pózt, ha ÉPPEN NEM harcolunk
+        if not self.combat_mode:
+            self.saved_pose = msg
+
     def combat_status_callback(self, msg):
         if msg.data == False and self.combat_mode:
             self.get_logger().error("⚔️ AZ ELLENSÉG MEGHALT! Treshold visszaállítva 80%-ra, navigáció újraindul...")
             self.combat_mode = False
             self.nav_canceled = False 
             self.target_lost_counter = 0 
+            
+            # --- AMCL RELOKALIZÁCIÓ ---
+            if self.saved_pose is not None:
+                self.get_logger().info("🗺️ AMCL Relokalizáció: Visszaállítom a harc előtti biztos pozíciót!")
+                self.saved_pose.header.stamp = self.get_clock().now().to_msg()
+                self.pub_initial_pose.publish(self.saved_pose)
+                time.sleep(1.0) # Várjunk 1 másodpercet, amíg az AMCL feldolgozza!
+                
             self.send_current_waypoint()
 
     def cancel_navigation(self):
@@ -135,7 +156,6 @@ class TurretControllerNode(Node):
         center_x = width // 2
 
         # --- HISZTERÉZIS LOGIKA ---
-        # Ha már harcban vagyunk, elég 70% is, hogy ne veszítsük el a célt. Ha nyugi van, 80% kell a befogáshoz.
         current_threshold = 0.70 if self.combat_mode else 0.80
 
         # YOLO meghívása az aktuális, dinamikus küszöbértékkel
@@ -158,7 +178,7 @@ class TurretControllerNode(Node):
                     target_visible = True
                     
                     # Rajzolás a képernyőre
-                    cv_color = (0, 165, 255) if self.combat_mode else (0, 0, 255) # Narancssárga ha már lockol, Piros ha csak keres
+                    cv_color = (0, 165, 255) if self.combat_mode else (0, 0, 255) 
                     cv2.rectangle(cv_image, (int(x1), int(y1)), (int(x2), int(y2)), cv_color, 2)
                     cv2.circle(cv_image, (cx, cy), 5, cv_color, -1)
                     cv2.putText(cv_image, f"TARGET {conf:.2f}", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, cv_color, 2)
@@ -204,8 +224,16 @@ class TurretControllerNode(Node):
                     self.combat_mode = False
                     self.nav_canceled = False
                     self.target_lost_counter = 0
+                    
+                    # --- AMCL RELOKALIZÁCIÓ ITT IS! ---
+                    if self.saved_pose is not None:
+                        self.get_logger().info("🗺️ AMCL Relokalizáció: Visszaállítom a harc előtti biztos pozíciót!")
+                        self.saved_pose.header.stamp = self.get_clock().now().to_msg()
+                        self.pub_initial_pose.publish(self.saved_pose)
+                        time.sleep(1.0)
+                        
                     self.send_current_waypoint() 
-            
+
             if not self.combat_mode:
                 self.pub_turret.publish(Float64(data=0.0))
                 cv2.putText(cv_image, f"NAVIGATING TO WP {self.current_waypoint_idx}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
@@ -227,3 +255,6 @@ def main(args=None):
     rclpy.spin(TurretControllerNode())
     cv2.destroyAllWindows()
     rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
